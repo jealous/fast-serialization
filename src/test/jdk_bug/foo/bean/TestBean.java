@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 
 public class TestBean extends TestBeanAncestor {
 	
-	static ThreadLocal<FSTConfiguration> fstConf = null;
+	ThreadLocal<FSTConfiguration> fstConf = null;
 	
 	static {
 		

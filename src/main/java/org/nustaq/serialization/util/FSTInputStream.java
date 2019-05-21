@@ -34,7 +34,6 @@ public final class FSTInputStream extends InputStream {
     private static final FSTLogger LOGGER = FSTLogger.getLogger(FSTInputStream.class);
 
     public int chunk_size = 8000;
-    public static ThreadLocal<byte[]> cachedBuffer = new ThreadLocal<byte[]>();
     public byte buf[];
     public int pos;
     public int count; // avaiable valid read bytes
@@ -61,11 +60,7 @@ public final class FSTInputStream extends InputStream {
         pos = 0;
         this.in = in;
         if (buf == null) {
-            buf = cachedBuffer.get();
-            if (buf == null) {
-                buf = new byte[chunk_size];
-                cachedBuffer.set(buf);
-            }
+            buf = new byte[chunk_size];
         }
         readNextChunk(in);
     }
@@ -101,9 +96,6 @@ public final class FSTInputStream extends InputStream {
             byte newBuf[] = new byte[siz];
             System.arraycopy(buf, 0, newBuf, 0, buf.length);
             buf = newBuf;
-            if (siz < 10 * 1024 * 1024) { // issue 19, don't go overboard with buffer caching
-                cachedBuffer.set(buf);
-            }
         }
     }
 

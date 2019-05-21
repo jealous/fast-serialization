@@ -63,7 +63,7 @@ public class OffHeapByteTree {
         return aLong;
     }
 
-    static ThreadLocal<HeapBytez> tmpbtz = new ThreadLocal<HeapBytez>() {
+    ThreadLocal<HeapBytez> tmpbtz = new ThreadLocal<HeapBytez>() {
         @Override
         protected HeapBytez initialValue() {
             return new HeapBytez(new byte[0]);

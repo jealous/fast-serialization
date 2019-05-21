@@ -757,7 +757,6 @@ public class FSTConfiguration {
      */
     public void clearCaches() {
         try {
-            FSTInputStream.cachedBuffer.set(null);
             while (!cacheLock.compareAndSet(false, true)) {
                 // empty
             }
@@ -1351,8 +1350,8 @@ public class FSTConfiguration {
             return new FSTMinBinDecoder(conf);
         }
 
-        static ThreadLocal input = new ThreadLocal();
-        static ThreadLocal output = new ThreadLocal();
+        ThreadLocal input = new ThreadLocal();
+        ThreadLocal output = new ThreadLocal();
 
         @Override
         public ThreadLocal getInput() {
@@ -1380,8 +1379,8 @@ public class FSTConfiguration {
             return new FSTStreamDecoder(fstConfiguration);
         }
 
-        static ThreadLocal input = new ThreadLocal();
-        static ThreadLocal output = new ThreadLocal();
+        ThreadLocal input = new ThreadLocal();
+        ThreadLocal output = new ThreadLocal();
 
         @Override
         public ThreadLocal getInput() {
@@ -1412,8 +1411,8 @@ public class FSTConfiguration {
             return new FSTJsonDecoder(conf);
         }
 
-        static ThreadLocal input = new ThreadLocal();
-        static ThreadLocal output = new ThreadLocal();
+        ThreadLocal input = new ThreadLocal();
+        ThreadLocal output = new ThreadLocal();
 
         @Override
         public ThreadLocal getInput() {
@@ -1443,8 +1442,8 @@ public class FSTConfiguration {
             return new FSTBytezDecoder(conf);
         }
 
-        static ThreadLocal input = new ThreadLocal();
-        static ThreadLocal output = new ThreadLocal();
+        ThreadLocal input = new ThreadLocal();
+        ThreadLocal output = new ThreadLocal();
 
         @Override
         public ThreadLocal getInput() {

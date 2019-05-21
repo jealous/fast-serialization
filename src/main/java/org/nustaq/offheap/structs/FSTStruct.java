@@ -435,7 +435,7 @@ public class FSTStruct implements Serializable {
     static Field address = null;
     static Field capacity = null;
 
-    static ThreadLocal<ByteBuffer> tmpBuf = new ThreadLocal<ByteBuffer>() {
+    ThreadLocal<ByteBuffer> tmpBuf = new ThreadLocal<ByteBuffer>() {
 
         @Override
         protected ByteBuffer initialValue() {
